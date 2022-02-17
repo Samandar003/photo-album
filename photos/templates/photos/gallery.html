@@ -30,7 +30,7 @@
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">All</li>
                   {% for category in categories %}
-                  <li class="list-group-item"> {{ category.name }} </li>
+                    <li class="list-group-item"> {{ category.name }} </li>
                   {% endfor %}
                   <a class="btn btn-dark btn-block btn-sm m-1" href="{% url 'add' %}"> Add Picture </a>
                 </ul>
@@ -47,7 +47,7 @@
                    alt="Card image cap">
 
                     <div class="card-body">
-                      <small> Category: {{photo.category}} </small>
+                      <small> Category: {{photo.category.name}} </small>
                     </div>
                     <a class="btn btn-outline-dark btn-sm m-1" 
                     href="{% url 'photo' photo.id %}"> View </a>
