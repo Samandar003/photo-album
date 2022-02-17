@@ -16,9 +16,9 @@
       <div class="col">
         <a class="btn btn-dark my-3" href="{% url 'gallery' %}"> Go Back </a>
         <div style="height: 90vh;">  
-          <img style="max-width: 100%; max-height: 100%;" src="https://images.unsplash.com/photo-1585829678101-f48bc32c00db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG9yc2UlMjBjYXJ0fGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="">
-          <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer t
-            ook a galley of type and scrambled it to make a type speci </p>
+          <img style="max-width: 100%; max-height: 100%;" 
+          src="{{ photo.image.url }}" alt="">
+          <p> {{ photo.description }} </p>
         </div>
       </div>
     </div>

@@ -29,9 +29,9 @@
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">All</li>
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
+                  {% for category in categories %}
+                  <li class="list-group-item"> {{ category.name }} </li>
+                  {% endfor %}
                   <a class="btn btn-dark btn-block btn-sm m-1" href="{% url 'add' %}"> Add Picture </a>
                 </ul>
               </div>
@@ -39,77 +39,23 @@
               <div class="col-md-9">
                 <div class="row">
 
-                  <div class="col-md-4">
-                  <div class="card">
-                    <img class="image-thumbail" 
-                    src="https://images.unsplash.com/photo-1615789591457-74a63395c990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&w=1000&q=80"
-                   alt="Card image cap">
-
-                    <div class="card-body">
-                      <small> Category: Pets </small>
-                    </div>
-                    <a class="btn btn-outline-dark btn-sm m-1" 
-                    href="{% url 'photo' 5 %}"> View </a>
-                  </div>
-                </div>
-
+                {% for photo in photos %}
                 <div class="col-md-4">
                   <div class="card">
                     <img class="image-thumbail" 
-                    src="https://images.unsplash.com/photo-1585829678101-f48bc32c00db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG9yc2UlMjBjYXJ0fGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+                    src="{{ photo.image.url }}"
                    alt="Card image cap">
 
                     <div class="card-body">
-                      <small> Category: Pets </small>
+                      <small> Category: {{photo.category}} </small>
                     </div>
                     <a class="btn btn-outline-dark btn-sm m-1" 
-                    href="{% url 'photo' 5 %}"> View </a>
+                    href="{% url 'photo' photo.id %}"> View </a>
                   </div>
                 </div>
-
-
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="image-thumbail" 
-                    src="https://images.unsplash.com/photo-1585829678101-f48bc32c00db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG9yc2UlMjBjYXJ0fGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-                   alt="Card image cap">
-
-                    <div class="card-body">
-                      <small> Category: Pets </small>
-                    </div>
-                    <a class="btn btn-outline-dark btn-sm m-1" 
-                    href="{% url 'photo' 5 %}"> View </a>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="image-thumbail" 
-                    src="https://images.unsplash.com/photo-1585829678101-f48bc32c00db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG9yc2UlMjBjYXJ0fGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-                   alt="Card image cap">
-
-                    <div class="card-body">
-                      <small> Category: Pets </small>
-                    </div>
-                    <a class="btn btn-outline-dark btn-sm m-1" 
-                    href="{% url 'photo' 5 %}"> View </a>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="image-thumbail" 
-                    src="https://images.unsplash.com/photo-1585829678101-f48bc32c00db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG9yc2UlMjBjYXJ0fGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-                   alt="Card image cap">
-
-                    <div class="card-body">
-                      <small> Category: Pets </small>
-                    </div>
-                    <a class="btn btn-outline-dark btn-sm m-1" 
-                    href="{% url 'photo' 4 %}"> View </a>
-                  </div>
-                </div>
-
+                {% empty %}
+                  <h3> No photos... </h3>
+                {% endfor %}
 
             </div>
     </div>
