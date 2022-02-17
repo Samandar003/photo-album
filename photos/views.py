@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
 from .models import Category, Photo
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import PhotoForm
 from django.contrib import messages
+from django.core.paginator import Paginator, InvalidPage
 
 def gallery(request):
   category = request.GET.get('category')
@@ -9,8 +11,16 @@ def gallery(request):
     photos = Photo.objects.all()
   else:
     photos = Photo.objects.filter(category__name__contains=category)
-  
   categories = Category.objects.all()
+  page = request.GET.get('page', 1)
+  paginator = Paginator(photos, 6)
+  try:
+      photos = paginator.page(page)
+  except PageNotAnInteger:
+      photos = paginator.page(1)
+  except EmptyPage:
+      photos = paginator.page(paginator.num_pages)
+    
   context = {'categories':categories, 'photos':photos}
   return render(request, 'photos/gallery.html', context)
 
